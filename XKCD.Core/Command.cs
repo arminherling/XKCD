@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Input;
 
 namespace XKCD.Core.ViewModel
@@ -26,6 +24,11 @@ namespace XKCD.Core.ViewModel
         public void Execute( object parameter )
         {
             execute( parameter );
+        }
+
+        public void ChangeCanExecute()
+        {
+            CanExecuteChanged?.Invoke( this, EventArgs.Empty );
         }
     }
 }
