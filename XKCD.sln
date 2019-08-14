@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.757
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XKCD.UI", "XKCD.UI\XKCD.UI.csproj", "{EDCF631A-8EC2-46F2-8D16-AB7BB544CC18}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XKCD.Core", "XKCD.Core\XKCD.Core.csproj", "{A320F998-F497-4042-8C91-1E53A53C763F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XKCD.Tests", "XKCD.Tests\XKCD.Tests.csproj", "{098E19E1-30E5-49BD-BB07-1672C5CAD5C0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EDCF631A-8EC2-46F2-8D16-AB7BB544CC18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDCF631A-8EC2-46F2-8D16-AB7BB544CC18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDCF631A-8EC2-46F2-8D16-AB7BB544CC18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDCF631A-8EC2-46F2-8D16-AB7BB544CC18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A320F998-F497-4042-8C91-1E53A53C763F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A320F998-F497-4042-8C91-1E53A53C763F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A320F998-F497-4042-8C91-1E53A53C763F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A320F998-F497-4042-8C91-1E53A53C763F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{098E19E1-30E5-49BD-BB07-1672C5CAD5C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{098E19E1-30E5-49BD-BB07-1672C5CAD5C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{098E19E1-30E5-49BD-BB07-1672C5CAD5C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{098E19E1-30E5-49BD-BB07-1672C5CAD5C0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {120D4771-3A07-431A-B985-61AEFCE24BDB}
+	EndGlobalSection
+EndGlobal
