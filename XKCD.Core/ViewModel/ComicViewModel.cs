@@ -13,8 +13,22 @@ namespace XKCD.Core.ViewModel
         private Comic comic;
         private Comic Comic
         {
-            set { SetProperty( ref this.comic, value ); }
+            set
+            {
+                SetProperty( ref this.comic, value );
+                RaiseComicPropertiesChanged();
+            }
             get { return this.comic; }
+        }
+
+        private void RaiseComicPropertiesChanged()
+        {
+            OnPropertyChanged( nameof( Title ) );
+            OnPropertyChanged( nameof( Number ) );
+            OnPropertyChanged( nameof( ReleaseDate ) );
+            OnPropertyChanged( nameof( Text ) );
+            OnPropertyChanged( nameof( ImageSource ) );
+            OnPropertyChanged( nameof( Link ) );
         }
 
         public string Title => Comic?.Title ?? string.Empty;
@@ -51,26 +65,26 @@ namespace XKCD.Core.ViewModel
 
         public async Task OnFirstShown()
         {
-            comic = await comicService.LoadComic();
+            Comic = await comicService.LoadComic();
             currentLastNumber = comic.Number;
             RefreshCanExecutes();
         }
 
         private async void OnFirstComic( object parameter )
         {
-            comic = await comicService.LoadComic( 1 );
+            Comic = await comicService.LoadComic( 1 );
             RefreshCanExecutes();
         }
 
         private async void OnNextComic( object parameter )
         {
-            comic = await comicService.LoadComic( Number + 1 );
+            Comic = await comicService.LoadComic( Number + 1 );
             RefreshCanExecutes();
         }
 
         private async void OnPreviousComic( object parameter )
         {
-            comic = await comicService.LoadComic( Number - 1 );
+            Comic = await comicService.LoadComic( Number - 1 );
             RefreshCanExecutes();
         }
 
@@ -84,7 +98,7 @@ namespace XKCD.Core.ViewModel
             var random = new Random();
             var randomNumber = random.Next( 1, currentLastNumber + 1 );
 
-            comic = await comicService.LoadComic( randomNumber );
+            Comic = await comicService.LoadComic( randomNumber );
             RefreshCanExecutes();
         }
     }

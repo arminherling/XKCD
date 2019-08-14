@@ -4,11 +4,11 @@ using XKCD.Core.Model;
 
 namespace XKCD.Core.Service
 {
-    class WebComicService : IComicService
+    public class WebComicService : IComicService
     {
-        public Task<Comic> LoadComic( int i = 0 )
+        public async Task<Comic> LoadComic( int i = 0 )
         {
-            throw new NotImplementedException();
+            return new Comic( 1, DateTime.Now, "title", "text", "link", "" );
         }
     }
 }

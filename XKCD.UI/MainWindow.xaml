@@ -5,8 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:XKCD.UI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="XKCD" Height="450" Width="600" Loaded="Window_Loaded" Icon="favicon.ico">
+    <StackPanel>
+        <TextBlock Text="{Binding Number}"/>
+        <TextBlock Text="{Binding Title}"/>
+        <TextBlock Text="{Binding ReleaseDate, StringFormat=d}" />
+        <Image Source="{Binding ImageSource}"/>
+        <TextBlock Text="{Binding Text}"/>
+        <TextBlock Text="{Binding Link}"/>
+        <StackPanel Orientation="Horizontal">
+            <Button Content="|&lt;" Command="{Binding FirstComicCommand}"/>
+            <Button Content="Previous" Command="{Binding PreviousComicCommand}"/>
+            <Button Content="Random" Command="{Binding RandomComicCommand}"/>
+            <Button Content="Next" Command="{Binding NextComicCommand}"/>
+            <Button Content="&gt;|" Command="{Binding LastComicCommand}"/>
+        </StackPanel>
+    </StackPanel>
 </Window>
