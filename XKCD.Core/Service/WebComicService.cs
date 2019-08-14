@@ -6,7 +6,7 @@ namespace XKCD.Core.Service
 {
     class WebComicService : IComicService
     {
-        public Task<Comic> LoadComic()
+        public Task<Comic> LoadComic( int i = 0 )
         {
             throw new NotImplementedException();
         }

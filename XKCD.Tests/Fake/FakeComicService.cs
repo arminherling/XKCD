@@ -10,11 +10,19 @@ namespace XKCD.Tests.Fake
     {
         List<Comic> comics = new List<Comic>();
 
-        public Task<Comic> LoadComic()
+        public Task<Comic> LoadComic( int number = 0 )
         {
-            var count = comics.Count;
-            var comic = comics[count - 1];
-            return Task.FromResult( comic );
+            if( number == 0 )
+            {
+                var count = comics.Count;
+                var comic = comics[count - 1];
+                return Task.FromResult( comic );
+            }
+            else
+            {
+                var comic = comics.Find( x => x.Number == number );
+                return Task.FromResult( comic );
+            }
         }
 
         public void AddFake( Comic comic )
