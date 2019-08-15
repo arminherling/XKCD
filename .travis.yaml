@@ -1,10 +1,4 @@
 language: csharp
-
-os:
-- windows
-- linux
-- osx
-
 mono: none
 dotnet: 2.1.502
 
