@@ -5,6 +5,6 @@ namespace XKCD.Core.Service
 {
     public interface IComicService
     {
-        Task<Comic> LoadComic(int i = 0);
+        Task<Comic> LoadComic(int number = 0);
     }
 }

@@ -10,16 +10,16 @@ namespace XKCD.Core.Service
     {
         private readonly HttpClient httpClient;
 
-        public WebComicService(HttpClient httpClient)
+        public WebComicService( HttpClient httpClient )
         {
             this.httpClient = httpClient;
         }
 
-        public async Task<Comic> LoadComic( int i = 0 )
+        public async Task<Comic> LoadComic( int number = 0 )
         {
-            string url = "https://xkcd.com/info.0.json";
+            string url = $"https://xkcd.com/{( number != 0 ? $"{number}/" : "" ) }info.0.json";
 
-            using(var response = await httpClient.GetAsync(url))
+            using( var response = await httpClient.GetAsync( url ) )
             {
                 if( response.IsSuccessStatusCode )
                 {
@@ -29,22 +29,22 @@ namespace XKCD.Core.Service
                 }
                 else
                 {
-                    throw new Exception( response.ReasonPhrase );
+                    return new Comic( -1, DateTime.Now, "An Error occured", response.ReasonPhrase, "", "" );
                 }
             }
         }
 
         private Comic ComicFromDTO( ComicDTO comicDTO )
         {
-            return new Comic( 
+            return new Comic(
                 comicDTO.Num,
-                new DateTime( 
-                    int.Parse( comicDTO.Year ), 
-                    int.Parse( comicDTO.Month ), 
-                    int.Parse( comicDTO.Day ) ), 
-                comicDTO.Title, 
-                comicDTO.Alt, 
-                comicDTO.Link, 
+                new DateTime(
+                    int.Parse( comicDTO.Year ),
+                    int.Parse( comicDTO.Month ),
+                    int.Parse( comicDTO.Day ) ),
+                comicDTO.Title,
+                comicDTO.Alt,
+                comicDTO.Link,
                 comicDTO.Img );
         }
     }
