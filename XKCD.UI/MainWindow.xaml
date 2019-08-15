@@ -3,22 +3,44 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:XKCD.UI"
         mc:Ignorable="d"
-        Title="XKCD" Height="450" Width="600" Loaded="Window_Loaded" Icon="favicon.ico">
-    <StackPanel>
-        <TextBlock Text="{Binding Number}"/>
-        <TextBlock Text="{Binding Title}"/>
-        <TextBlock Text="{Binding ReleaseDate, StringFormat=d}" />
-        <Image Source="{Binding ImageSource}"/>
-        <TextBlock Text="{Binding Text}"/>
-        <TextBlock Text="{Binding Link}"/>
-        <StackPanel Orientation="Horizontal">
-            <Button Content="|&lt;" Command="{Binding FirstComicCommand}"/>
-            <Button Content="Previous" Command="{Binding PreviousComicCommand}"/>
-            <Button Content="Random" Command="{Binding RandomComicCommand}"/>
-            <Button Content="Next" Command="{Binding NextComicCommand}"/>
-            <Button Content="&gt;|" Command="{Binding LastComicCommand}"/>
+        Title="XKCD" Height="600" Width="800" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" Icon="favicon.ico">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Margin="7" FontSize="16" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Right" Text="{Binding Number}"/>
+            <TextBlock Grid.Column="1" Margin="7" FontSize="24" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding Title}"/>
+            <TextBlock Grid.Column="2" Margin="7" FontSize="16" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding ReleaseDate, StringFormat=d}"/>
+        </Grid>
+        <TextBlock Grid.Row="1" Margin="7,0" HorizontalAlignment="Center">Permanent link: 
+            <Hyperlink NavigateUri="{Binding PermanentLink}" RequestNavigate="Hyperlink_RequestNavigate">
+                <Run Text="{Binding PermanentLink, Mode=OneWay}"/>
+            </Hyperlink></TextBlock>
+        <Image Grid.Row="2" Margin="7" Source="{Binding ImageSource}"/>
+        <TextBlock Grid.Row="3" Margin="7" Text="{Binding Text}" TextWrapping="Wrap"/>
+        <TextBlock Grid.Row="4" Margin="7">
+            <Hyperlink NavigateUri="{Binding Link}" RequestNavigate="Hyperlink_RequestNavigate">
+                <Run Text="{Binding Link, Mode=OneWay}"/>
+            </Hyperlink>
+        </TextBlock>
+        <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Width="50" Padding="7" Margin="7" Content="|&lt;" Command="{Binding FirstComicCommand}"/>
+            <Button Width="50" Padding="7" Margin="7" Content="&lt;" Command="{Binding PreviousComicCommand}"/>
+            <Button Width="50" Padding="7" Margin="7" Content="?" Command="{Binding RandomComicCommand}"/>
+            <Button Width="50" Padding="7" Margin="7" Content="&gt;" Command="{Binding NextComicCommand}"/>
+            <Button Width="50" Padding="7" Margin="7" Content="&gt;|" Command="{Binding LastComicCommand}"/>
         </StackPanel>
-    </StackPanel>
+    </Grid>
 </Window>

@@ -29,6 +29,7 @@ namespace XKCD.Core.ViewModel
             OnPropertyChanged( nameof( Text ) );
             OnPropertyChanged( nameof( ImageSource ) );
             OnPropertyChanged( nameof( Link ) );
+            OnPropertyChanged( nameof( PermanentLink ) );
         }
 
         public string Title => Comic?.Title ?? string.Empty;
@@ -37,6 +38,7 @@ namespace XKCD.Core.ViewModel
         public string Text => Comic?.Text ?? string.Empty;
         public string ImageSource => Comic?.ImageSource ?? string.Empty;
         public string Link => Comic?.Link ?? string.Empty;
+        public string PermanentLink => Comic == null ? string.Empty : $"http://xkcd.com/{Number}/";
 
         public ICommand FirstComicCommand { get; }
         public ICommand NextComicCommand { get; }
@@ -78,12 +80,18 @@ namespace XKCD.Core.ViewModel
 
         private async void OnNextComic( object parameter )
         {
+            if( Number == currentLastNumber )
+                return;
+
             Comic = await comicService.LoadComic( Number + 1 );
             RefreshCanExecutes();
         }
 
         private async void OnPreviousComic( object parameter )
         {
+            if( Number == 1 )
+                return;
+
             Comic = await comicService.LoadComic( Number - 1 );
             RefreshCanExecutes();
         }

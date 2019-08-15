@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Windows;
 using System.Windows.Markup;
+using System.Windows.Navigation;
 using XKCD.Core.Service;
 using XKCD.Core.ViewModel;
 
@@ -31,6 +32,12 @@ namespace XKCD.UI
         private async void Window_Loaded( object sender, RoutedEventArgs e )
         {
             await viewModel.OnFirstShown();
+        }
+
+        private void Hyperlink_RequestNavigate( object sender, RequestNavigateEventArgs e )
+        {
+            System.Diagnostics.Process.Start( e.Uri.AbsoluteUri );
+            e.Handled = true;
         }
     }
 }

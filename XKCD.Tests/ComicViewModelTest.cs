@@ -33,9 +33,9 @@ namespace XKCD.Tests
         [Test]
         public void Title_IsEmpty_OnNewViewModel()
         {
-            var expected = true;
+            var expected = string.Empty;
 
-            var actual = string.IsNullOrEmpty( viewModel.Title );
+            var actual = viewModel.Title;
 
             Assert.AreEqual( expected, actual );
         }
@@ -123,12 +123,33 @@ namespace XKCD.Tests
         {
             var possibleNumbers = new List<int>() { 1, 2, 3, 4 };
             // Loading the current last comic to set the internal current comic number
-            viewModel.LastComicCommand.Execute(null);
+            viewModel.LastComicCommand.Execute( null );
 
             viewModel.RandomComicCommand.Execute( null );
             var actual = viewModel.Number;
 
             CollectionAssert.Contains( possibleNumbers, actual );
+        }
+
+        [Test]
+        public void PermanentLink_ContainsTheLinkToComicNumberFour_AfterExecutingLastComicCommand()
+        {
+            var expected = "http://xkcd.com/4/";
+
+            viewModel.LastComicCommand.Execute( null );
+            var actual = viewModel.PermanentLink;
+
+            Assert.AreEqual( expected, actual );
+        }
+
+        [Test]
+        public void PermanentLink_IsEmpty_OnNewViewModel()
+        {
+            var expected = string.Empty;
+
+            var actual = viewModel.PermanentLink;
+
+            Assert.AreEqual( expected, actual );
         }
     }
 }
