@@ -1,6 +1,11 @@
 language: csharp
 mono: none
-dotnet: 2.2
+dotnet: 2.1.502
+os:
+- windows
+- linux
+- osx
+
 script:
 - dotnet restore
 - dotnet build ./XKCD.Core/
