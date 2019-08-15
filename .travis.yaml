@@ -1,0 +1,19 @@
+language: csharp
+
+os:
+- windows
+- linux
+- osx
+
+mono: none
+dotnet: 2.1.502
+
+script:
+- dotnet restore
+- dotnet build ./XKCD.Core/
+- dotnet test ./XKCD.Tests/
+
+notifications:
+    email:
+        on_success: never
+        on_failure: always
