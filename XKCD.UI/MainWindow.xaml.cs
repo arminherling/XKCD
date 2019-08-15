@@ -1,4 +1,6 @@
 ﻿using System.Globalization;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Windows;
 using System.Windows.Markup;
 using XKCD.Core.Service;
@@ -17,7 +19,11 @@ namespace XKCD.UI
             // set the current culture for the datetime converter
             this.Language = XmlLanguage.GetLanguage( CultureInfo.CurrentCulture.IetfLanguageTag );
 
-            var comicService = new WebComicService();
+            var httpClient = new HttpClient();
+            httpClient.DefaultRequestHeaders.Accept.Clear();
+            httpClient.DefaultRequestHeaders.Accept.Add( new MediaTypeWithQualityHeaderValue("application/json") );
+
+            var comicService = new WebComicService(httpClient);
             viewModel = new ComicViewModel(comicService);
             this.DataContext = viewModel;
         }
